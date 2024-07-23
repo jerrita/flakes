@@ -23,7 +23,7 @@
       syntaxHighlighting.enable = true;
       initExtraFirst = ''
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-        source ~/.p10k.zsh
+        source ${./files/p10k.zsh}
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
         if [[ $(uname -s) == "Darwin" ]]; then

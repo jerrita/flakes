@@ -48,6 +48,7 @@
       "telegram"
 
       # Utils
+      "appcleaner"
       "iina"
       "stats"
       "raycast"
