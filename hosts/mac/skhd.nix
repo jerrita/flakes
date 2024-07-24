@@ -42,7 +42,7 @@
       alt - 7 : yabai -m space --focus 7
       alt - 8 : yabai -m space --focus 8
       alt - 9 : yabai -m space --focus 9
-      alt - 0  : yabai -m space --focus 10
+      alt - 0 : yabai -m space --focus 10
 
       # increase window size
       shift + alt - w : yabai -m window --resize top:0:-20
@@ -60,7 +60,7 @@
 
       # float
       alt - space : yabai -m window --toggle float;\
-          yabai -m window --grid 4:4:1:1:2:2
+          yabai -m window --toggle border
 
       alt - d : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
     '';

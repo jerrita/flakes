@@ -2,7 +2,7 @@
   home.shellAliases = {
     cd = "z";
     k = "kubectl";
-    rg = "ranger";
+    rg = "joshuto";
     lg = "lazygit";
 
     l = "ls -lG";

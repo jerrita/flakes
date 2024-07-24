@@ -25,13 +25,11 @@
 
     # utils
     ripgrep
-    ranger
+    joshuto
     lazygit
     jq
     yq-go
     fzf
-
-    # misc
     htop
     file
     which

@@ -7,6 +7,7 @@
   imports = [
     ./shell.nix
     ./common.nix
+    ./git.nix
     ./nvim
   ];
 

@@ -7,8 +7,9 @@
     ./host.nix
     ./apps.nix
 
-    # ./yabai.nix
-    # ./skhd.nix
+    ./sketchybar
+    ./yabai.nix
+    ./skhd.nix
 
     ../../modules/nix-core.nix
     ../../modules/homebrew-mirror.nix
@@ -32,6 +33,7 @@
         FXPreferredViewStyle = "clmv";
         ShowStatusBar = true;
       };
+      NSGlobalDomain._HIHideMenuBar = true;
       screencapture.location = "~/Screenshots";
       trackpad.Clicking = true;
     };

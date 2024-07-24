@@ -53,6 +53,7 @@
       "stats"
       "raycast"
       "scroll-reverser"
+      "microsoft-remote-desktop"
 
       # Misc
       "playcover-community@beta"
