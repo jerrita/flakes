@@ -5,7 +5,6 @@
 
     # substituers that will be considered before the official ones(https://cache.nixos.org)
     substituters = [
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
@@ -13,8 +12,4 @@
     ];
     builders-use-substitutes = true;
   };
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
 }

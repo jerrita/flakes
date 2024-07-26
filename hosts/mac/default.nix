@@ -40,5 +40,12 @@
   };
 
   security.pam.enableSudoTouchIdAuth = true;
+
+  nix.settings.substituters = [
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+  ];
+  nix.package = pkgs.nix;
   programs.zsh.enable = true;
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable = true;
 }
