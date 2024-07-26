@@ -1,6 +1,6 @@
 {lib, ...}: {
-  enableConfig = false;
   disko = {
+    enableConfig = false;
     devices = {
       disk.main = {
         imageSize = "1500M";

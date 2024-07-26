@@ -17,7 +17,7 @@
   services.openssh.enable = true;
 
   time.timeZone = "Asia/Shanghai";
-  systemd.resolved.enable = false;
+  services.resolved.enable = false;
   networking.nameservers = ["8.8.8.8"];
   networking.hostName = "bootstrap";
 
