@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     wget
     mas
+    skhd
     darwin.iproute2mac
     alejandra
   ];

@@ -4,7 +4,7 @@
 
   services.sketchybar = {
     enable = true;
-    extraPackages = with pkgs; [jq ifstat-legacy jetbrains-mono];
+    extraPackages = with pkgs; [jq ifstat-legacy jetbrains-mono skhd];
     config = ''
       #!/bin/bash
       export CONFIG_DIR=${./config}

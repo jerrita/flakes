@@ -1,7 +1,7 @@
 {...}: {
   services.yabai = {
     enable = true;
-    enableScriptingAddition = true; # SIP must be disabled
+    enableScriptingAddition = false;
     config = {
       focus_follows_mouse = "autoraise"; # autoraise / off
       mouse_follows_focus = "off";
@@ -17,7 +17,7 @@
     };
 
     extraConfig = ''
-      yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+      # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
       yabai -m rule --add app="^系统设置$" manage=off
       yabai -m rule --add app="^系统偏好设置$" manage=off
