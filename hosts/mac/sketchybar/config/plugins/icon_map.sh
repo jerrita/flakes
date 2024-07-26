@@ -1,4 +1,7 @@
 case $@ in
+"MarkText")
+    icon_result=":notes:"
+    ;;
 "Brave Browser")
 	icon_result=":brave_browser:"
 	;;
@@ -277,9 +280,6 @@ case $@ in
 	;;
 "Transmit")
 	icon_result=":transmit:"
-	;;
-"Pi-hole Remote")
-	icon_result=":pihole:"
 	;;
 "Nova")
 	icon_result=":nova:"

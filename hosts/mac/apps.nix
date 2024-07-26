@@ -36,6 +36,7 @@
       "microsoft-edge"
       "visual-studio-code"
       "obsidian"
+      "mark-text"
       "iterm2"
 
       # Research

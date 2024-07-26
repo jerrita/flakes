@@ -9,6 +9,9 @@
     neofetch
     cachix
 
+    # fonts
+    jetbrains-mono
+
     # archives
     zip
     xz

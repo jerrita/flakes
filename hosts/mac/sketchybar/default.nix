@@ -4,9 +4,7 @@
 
   services.sketchybar = {
     enable = true;
-    extraPackages = with pkgs; [
-      jq
-    ];
+    extraPackages = with pkgs; [jq ifstat-legacy jetbrains-mono];
     config = ''
       #!/bin/bash
       export CONFIG_DIR=${./config}
@@ -26,7 +24,7 @@
       $CONFIG_DIR/helper/helper $HELPER >/dev/null 2>&1 &
 
       # Unload the macOS on screen indicator overlay for volume change
-      launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+      # launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
 
       # Setting up the general bar appearance of the bar
       bar=(
@@ -89,11 +87,11 @@
       source "$ITEM_DIR/calendar.sh"
       # source "$ITEM_DIR/brew.sh"
       # source "$ITEM_DIR/github.sh"
-      # source "$ITEM_DIR/wifi.sh"
-      source "$ITEM_DIR/battery.sh"
       # source "$ITEM_DIR/volume.sh"
+      source "$ITEM_DIR/battery.sh"
       source "$ITEM_DIR/wechat.sh"
       source "$ITEM_DIR/qq.sh"
+      source "$ITEM_DIR/network.sh"
       source "$ITEM_DIR/cpu.sh"
       # source "$ITEM_DIR/cava.sh"
       # source "$ITEM_DIR/music.sh"
