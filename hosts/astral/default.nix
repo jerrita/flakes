@@ -9,6 +9,7 @@
     ../../modules/nix-core.nix
     ../../modules/user.nix
     ../../modules/zram.nix
+    ../../modules/vps.nix
   ];
 
   boot.loader.grub = {
@@ -16,6 +17,8 @@
     device = "/dev/vda";
   };
   services.openssh.enable = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   time.timeZone = "Asia/Shanghai";
 
