@@ -7,6 +7,7 @@
     ./hardware.nix
 
     ../../modules/nix-core.nix
+    ../../modules/user.nix
   ];
 
   boot.loader.grub = {

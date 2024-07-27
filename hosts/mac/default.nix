@@ -14,6 +14,7 @@
     ../../modules/nix-core.nix
     ../../modules/homebrew-mirror.nix
     ../../modules/fonts.nix
+    ../../modules/user.nix
   ];
 
   system = {
