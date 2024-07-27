@@ -10,6 +10,7 @@
     ../../modules/user.nix
     ../../modules/zram.nix
     ../../modules/vps.nix
+    ../../modules/sys.nix
   ];
 
   boot.loader.grub = {
@@ -26,11 +27,6 @@
   services.resolved.enable = false;
   networking.resolvconf.enable = false;
   environment.etc."resolv.conf".text = "nameserver 8.8.8.8\n";
-
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
-  ];
 
   programs.zsh.enable = true;
 

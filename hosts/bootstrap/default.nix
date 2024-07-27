@@ -8,6 +8,7 @@
 
     ../../modules/disk-config.nix
     ../../modules/nix-core.nix
+    ../../modules/zram.nix
   ];
 
   boot.loader.grub = {

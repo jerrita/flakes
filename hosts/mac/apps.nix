@@ -2,11 +2,9 @@
   # https://daiderd.com/nix-darwin/manual/index.html
 
   environment.systemPackages = with pkgs; [
-    wget
     mas
     skhd
     darwin.iproute2mac
-    alejandra
   ];
 
   homebrew = {
