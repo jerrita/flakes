@@ -29,6 +29,8 @@
     pkgs.gitMinimal
   ];
 
+  programs.zsh.enable = true;
+
   documentation = {
     man.enable = true;
     dev.enable = false;
