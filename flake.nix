@@ -61,6 +61,7 @@
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs username;
+        ismac = false;
       };
       modules = [
         ./hosts/astral
