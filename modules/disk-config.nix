@@ -3,7 +3,7 @@
     enableConfig = false;
     devices = {
       disk.main = {
-        imageSize = "1500M";
+        imageSize = "3G";
         device = "/dev/vda";
         type = "disk";
         content = {
@@ -22,6 +22,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = ["fmask=0077" "dmask=0077"];
               };
             };
             root = {
@@ -37,12 +38,14 @@
       };
     };
   };
+
   fileSystems."/boot" = {
-    device = "/dev/vda1";
+    device = "/dev/vda2";
     fsType = "vfat";
   };
+
   fileSystems."/" = {
-    device = "/dev/vda2";
+    device = "/dev/vda3";
     fsType = "ext4";
   };
 }

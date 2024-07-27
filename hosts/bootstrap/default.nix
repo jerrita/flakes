@@ -11,13 +11,13 @@
   ];
 
   boot.loader.grub = {
-    efiSupport = true;
-    efiInstallAsRemovable = true;
+    device = "/dev/vda";
   };
   services.openssh.enable = true;
 
   time.timeZone = "Asia/Shanghai";
   services.resolved.enable = false;
+
   networking.nameservers = ["8.8.8.8"];
   networking.hostName = "bootstrap";
 
