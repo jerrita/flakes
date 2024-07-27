@@ -41,7 +41,7 @@
       specialArgs = {
         inherit inputs username;
         hostname = "Jerrita-Air";
-        homedir = "/Users/${username}";
+        ismac = true;
       };
 
       modules = [
@@ -60,8 +60,7 @@
     nixosConfigurations.astral = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = {
-        inherit inputs, username;
-        homedir = "/home/jerrita";
+        inherit inputs username;
       };
       modules = [
         ./hosts/astral

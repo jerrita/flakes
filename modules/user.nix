@@ -1,9 +1,22 @@
-{username, homedir, ...}:
 {
-  users.users."${username}" = {
-    home = "${homedir}";
-    description = "Home directory for ${username}";
-  };
+  username,
+  lib,
+  ismac ? false,
+  ...
+}: {
+  users.users."${username}" =
+    if ismac
+    then {
+      home = "/Users/${username}";
+    }
+    else {
+      isNormalUser = true;
+      # home = "/home/${username}";
+      extraGroups = ["wheel"];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINu+Alullj1Meq+a3KNFlIT9lU9YCb8WDr/mZhHCEPji jerrita@mac-air"
+      ];
+    };
 
   nix.settings.trusted-users = [username];
 }
