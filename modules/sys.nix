@@ -19,6 +19,7 @@
       then []
       else [
         psmisc
+        lsof
         sysstat
         inetutils
         iotop

@@ -7,6 +7,7 @@
     ./hardware.nix
 
     ../../services/xray.nix
+    ../../services/hysteria.nix
 
     ../../modules/nix-core.nix
     ../../modules/zram.nix

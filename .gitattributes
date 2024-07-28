@@ -1,2 +1,1 @@
-secrets/**.yaml diff=sopsdiffer
-secrets/**.json diff=sopsdiffer
+secrets/common/*.yaml diff=sopsdiffer

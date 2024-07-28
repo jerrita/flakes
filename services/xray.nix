@@ -1,12 +1,20 @@
-{config, ...}: {
-  users.users."xray".isNormalUser = true;
+{config, ...}: let
+  user = "xray";
+in {
+  users.users."${user}" = {
+    isSystemUser = true;
+    group = "${user}";
+  };
+  users.groups."${user}" = {};
+
+  networking.firewall.allowedTCPPorts = [7137];
   sops = {
     secrets = {
       uuid = {};
       reality = {};
     };
     templates."xray.json" = {
-      owner = "xray";
+      owner = "${user}";
       content = ''
         {
             "log": {
@@ -67,6 +75,5 @@
     enable = true;
     settingsFile = config.sops.templates."xray.json".path;
   };
-  systemd.services.xray.serviceConfig.User = "xray";
-  networking.firewall.allowedTCPPorts = [7137];
+  systemd.services.xray.serviceConfig.User = "${user}";
 }
