@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{ismac, ...}: let
+  sops-prefix =
+    if ismac
+    then "$(getconf DARWIN_USER_TEMP_DIR)"
+    else "$XDG_RUNTIME_DIR";
+in {
   home.shellAliases = {
     k = "kubectl";
     rg = "joshuto";
@@ -17,6 +22,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       initExtraFirst = ''
+        source ${sops-prefix}/env
         if [[ $(uname -s) == "Darwin" ]]; then
             export PATH="$PATH:/opt/homebrew/bin"
         fi

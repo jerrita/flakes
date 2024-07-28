@@ -8,6 +8,7 @@
     ./shell.nix
     ./common.nix
     ./git.nix
+    ./sops.nix
     ./nvim
   ];
 

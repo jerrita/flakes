@@ -10,6 +10,9 @@
       wget
       git
       alejandra
+
+      inetutils
+      tldr
     ]
     ++ (
       if ismac

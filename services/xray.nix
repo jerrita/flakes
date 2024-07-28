@@ -7,11 +7,12 @@
       {
           "log": {
               "access": "none",
-              "loglevel": "error"
+              "loglevel": "warning"
           },
           "inbounds": [
               {
                   "port": 7137,
+                  "listen": "0.0.0.0",
                   "protocol": "vless",
                   "settings": {
                       "clients": [
@@ -50,7 +51,7 @@
           "outbounds": [
               {
                   "protocol": "freedom",
-                  "domainStrategy": "UseIPv6v4"
+                  "domainStrategy": "UseIPv4v6"
               }
           ]
       }
@@ -62,6 +63,8 @@
     enable = true;
     settingsFile = config.sops.templates."xray.json".path;
   };
+
+  networking.firewall.allowedTCPPorts = [7137];
 
   systemd.services.xray.serviceConfig = {
     User = "xray";
