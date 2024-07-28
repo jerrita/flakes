@@ -34,13 +34,14 @@
     ...
   }: let
     username = "jerrita";
-  in rec {
+  in {
     darwinConfigurations."mac" = darwin.lib.darwinSystem rec {
       system = "aarch64-darwin";
       specialArgs = {
         inherit inputs username;
         hostname = "Jerrita-Air";
         ismac = true;
+        iscn = true;
       };
 
       modules = [
@@ -61,6 +62,7 @@
       specialArgs = {
         inherit inputs username;
         ismac = false;
+        iscn = false;
       };
       modules = [
         ./hosts/astral
@@ -71,6 +73,10 @@
 
     nixosConfigurations.bootstrap = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {
+        ismac = false;
+        iscn = false;
+      };
       modules = [
         ./hosts/bootstrap
 

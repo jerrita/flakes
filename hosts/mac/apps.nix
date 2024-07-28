@@ -58,6 +58,7 @@
       "microsoft-remote-desktop"
 
       # Misc
+      "clash-verge-rev"
       "playcover-community@beta"
     ];
   };

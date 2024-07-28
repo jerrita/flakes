@@ -1,5 +1,4 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.screenfetch pkgs.neofetch];
+{...}: {
   services.vnstat.enable = true;
   boot.kernel.sysctl = {
     # tcp tuning

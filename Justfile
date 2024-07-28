@@ -24,6 +24,11 @@ gc:
 age target:
     nix-shell -p ssh-to-age --run 'ssh-keyscan {{ target }} | ssh-to-age'
 
+bootstrap:
+    nix build .#image -L
+    cp result/main.raw nixos-bootstrap
+    xz nixos-bootstrap
+
 # ---------------- Remote Servers ------------------
 cache:
     ssh-add ~/.ssh/id_ed25519

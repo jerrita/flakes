@@ -34,7 +34,7 @@
     nixos.enable = false;
   };
 
-  services.openssh.settings.PermitRootLogin = true;
+  services.openssh.settings.PermitRootLogin = "yes";
   users.users.root = {
     # Password: bootstrap
     hashedPassword = "$y$j9T$YmBq2sedi2MiiYavxL/2s/$mZRegovXZ2moAsg91gKzSoDs//DtOk41roROqJkf4JA";

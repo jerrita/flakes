@@ -10,6 +10,7 @@
       wget
       git
       alejandra
+      neofetch
 
       inetutils
       tldr
@@ -22,6 +23,7 @@
         sysstat
         iotop
         vim
+        screenfetch
       ]
     );
 }
