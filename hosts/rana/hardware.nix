@@ -12,13 +12,13 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "virtio_blk"];
+  boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = [];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/aa157006-5514-48e2-a5d9-7acd6954d0cb";
+    device = "/dev/disk/by-uuid/f28bab41-e614-43b5-a95c-be4973b1af91";
     fsType = "ext4";
   };
 

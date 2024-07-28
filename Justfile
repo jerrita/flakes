@@ -24,6 +24,9 @@ gc:
 age target:
     nix-shell -p ssh-to-age --run 'ssh-keyscan {{ target }} | ssh-to-age'
 
+sops:
+    sops updatekeys secrets/common/*.yaml
+
 bootstrap:
     nix build .#image -L
     cp result/main.raw nixos-bootstrap
@@ -37,3 +40,4 @@ deploy target: fmt cache
     nixos-rebuild switch --flake .#{{ target }} --target-host {{ target }} --build-host {{ target }} --fast --use-remote-sudo
 
 astral target='astral': (deploy target)
+rana target='rana': (deploy target)

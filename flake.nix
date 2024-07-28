@@ -57,7 +57,7 @@
       ];
     };
 
-    nixosConfigurations.astral = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.astral = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs username;
@@ -66,6 +66,20 @@
       };
       modules = [
         ./hosts/astral
+
+        sops-nix.nixosModules.sops
+      ];
+    };
+
+    nixosConfigurations.rana = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {
+        inherit inputs username;
+        ismac = false;
+        iscn = false;
+      };
+      modules = [
+        ./hosts/rana
 
         sops-nix.nixosModules.sops
       ];

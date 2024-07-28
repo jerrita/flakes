@@ -1,4 +1,5 @@
 {...}: {
+  boot.kernelParams = ["audit=0" "net.ifnames=0"];
   services.vnstat.enable = true;
   boot.kernel.sysctl = {
     # tcp tuning

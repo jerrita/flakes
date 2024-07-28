@@ -12,7 +12,6 @@
       alejandra
       neofetch
 
-      inetutils
       tldr
     ]
     ++ (
@@ -21,6 +20,7 @@
       else [
         psmisc
         sysstat
+        inetutils
         iotop
         vim
         screenfetch
