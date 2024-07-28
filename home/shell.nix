@@ -3,6 +3,7 @@
     k = "kubectl";
     rg = "joshuto";
     lg = "lazygit";
+    cd = "z";
 
     update = "cd ~/flakes && just";
     urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";

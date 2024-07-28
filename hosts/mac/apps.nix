@@ -5,6 +5,8 @@
     mas
     skhd
     darwin.iproute2mac
+    nixos-rebuild
+    cargo
   ];
 
   homebrew = {

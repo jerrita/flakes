@@ -20,10 +20,8 @@
     };
 
     # nixos anywhere
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    sops-nix.url = "github:Mic92/sops-nix";
+    disko.url = "github:nix-community/disko";
   };
 
   outputs = inputs @ {
@@ -31,6 +29,7 @@
     nixpkgs,
     disko,
     darwin,
+    sops-nix,
     home-manager,
     ...
   }: let
@@ -66,13 +65,7 @@
       modules = [
         ./hosts/astral
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = specialArgs;
-          home-manager.users.${username} = import ./home;
-        }
+        sops-nix.nixosModules.sops
       ];
     };
 

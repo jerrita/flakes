@@ -34,9 +34,14 @@
     nixos.enable = false;
   };
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINu+Alullj1Meq+a3KNFlIT9lU9YCb8WDr/mZhHCEPji jerrita@mac-air"
-  ];
+  services.openssh.settings.PermitRootLogin = true;
+  users.users.root = {
+    # Password: bootstrap
+    hashedPassword = "$y$j9T$YmBq2sedi2MiiYavxL/2s/$mZRegovXZ2moAsg91gKzSoDs//DtOk41roROqJkf4JA";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIlhieGV556BnkvCUDWev/awcmdxgjAgLT2VOuFPaIqa jerrita@dev"
+    ];
+  };
 
   system.stateVersion = "24.05";
 }

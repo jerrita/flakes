@@ -1,0 +1,9 @@
+keys:
+  - &jerrita age1feqjynjlfu3tx7xukcrqjxfg7gyke0sy9c9gskrhp5laxy9md3ss56s482
+  - &astral age1862lkkgtfnm24l0q3umxllrtdfvlgj59cwp5xnjjehw6wjan0cnsrermu8
+creation_rules:
+  - path_regex: secrets/common/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *jerrita
+      - *astral

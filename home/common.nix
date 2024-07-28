@@ -27,6 +27,7 @@
     nload
 
     # utils
+    sops
     ripgrep
     joshuto
     lazygit
@@ -47,6 +48,7 @@
     glow
     gh
     just
+    tldr
   ];
 
   programs = {

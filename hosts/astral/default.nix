@@ -6,11 +6,13 @@
   imports = [
     ./hardware.nix
 
+    ../../services/xray.nix
+
     ../../modules/nix-core.nix
-    ../../modules/user.nix
     ../../modules/zram.nix
     ../../modules/vps.nix
     ../../modules/sys.nix
+    ../../modules/sops.nix
   ];
 
   boot.loader.grub = {
@@ -38,7 +40,7 @@
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINu+Alullj1Meq+a3KNFlIT9lU9YCb8WDr/mZhHCEPji jerrita@mac-air"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIlhieGV556BnkvCUDWev/awcmdxgjAgLT2VOuFPaIqa jerrita@dev"
   ];
 
   system.stateVersion = "24.05";
