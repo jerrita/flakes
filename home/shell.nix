@@ -1,6 +1,6 @@
-{ismac, ...}: let
+{osConfig, ...}: let
   sops-prefix =
-    if ismac
+    if osConfig.ismac
     then "$(getconf DARWIN_USER_TEMP_DIR)"
     else "$XDG_RUNTIME_DIR";
 in {

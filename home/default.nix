@@ -1,6 +1,6 @@
 {
+  osConfig,
   username,
-  ismac ? false,
   ...
 }: {
   # import sub modules
@@ -15,7 +15,7 @@
   home = {
     username = "${username}";
     homeDirectory =
-      if ismac
+      if osConfig.ismac
       then "/Users/${username}"
       else "/home/${username}";
     stateVersion = "24.05";

@@ -1,4 +1,8 @@
-{iscn ? false, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   nix.settings = {
     # enable flakes globally
     experimental-features = ["nix-command" "flakes"];
@@ -9,7 +13,7 @@
         "https://nix-community.cachix.org"
       ]
       ++ (
-        if iscn
+        if config.iscn
         then [
           "https://mirrors.ustc.edu.cn/nix-channels/store"
         ]

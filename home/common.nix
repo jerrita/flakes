@@ -1,9 +1,4 @@
-{
-  pkgs,
-  nixpkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     home-manager
     neofetch

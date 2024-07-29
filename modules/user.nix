@@ -1,11 +1,11 @@
 {
   username,
   pkgs,
-  ismac ? false,
+  config,
   ...
 }: {
   users.users."${username}" =
-    if ismac
+    if config.ismac
     then {
       home = "/Users/${username}";
     }

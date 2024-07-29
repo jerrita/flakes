@@ -1,11 +1,11 @@
 {
   inputs,
-  ismac,
+  osConfig,
   username,
   ...
 }: let
   homedir =
-    if ismac
+    if osConfig.ismac
     then "/Users/${username}"
     else "/home/${username}";
 in {

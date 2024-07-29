@@ -1,5 +1,15 @@
 {...}: {
   boot.kernelParams = ["audit=0" "net.ifnames=0"];
+
+  # auto clean
+  boot.loader.systemd-boot.configurationLimit = 10;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1w";
+  };
+  nix.settings.auto-optimise-store = true;
+
   services.vnstat.enable = true;
   boot.kernel.sysctl = {
     # tcp tuning

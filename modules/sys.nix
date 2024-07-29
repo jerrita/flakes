@@ -1,6 +1,6 @@
 {
+  config,
   pkgs,
-  ismac,
   ...
 }: {
   environment.systemPackages = with pkgs;
@@ -15,7 +15,7 @@
       tldr
     ]
     ++ (
-      if ismac
+      if config.ismac
       then []
       else [
         psmisc

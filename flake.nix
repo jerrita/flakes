@@ -15,11 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixos anywhere
     sops-nix.url = "github:Mic92/sops-nix";
     disko.url = "github:nix-community/disko";
   };
@@ -40,11 +39,14 @@
       specialArgs = {
         inherit inputs username;
         hostname = "Jerrita-Air";
-        ismac = true;
-        iscn = true;
       };
 
       modules = [
+        ./modules/config.nix
+        {
+          ismac = true;
+          iscn = true;
+        }
         ./hosts/mac
 
         home-manager.darwinModules.home-manager
@@ -61,10 +63,9 @@
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs username;
-        ismac = false;
-        iscn = false;
       };
       modules = [
+        ./modules/config.nix
         ./hosts/astral
 
         sops-nix.nixosModules.sops
@@ -75,10 +76,9 @@
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs username;
-        ismac = false;
-        iscn = false;
       };
       modules = [
+        ./modules/config.nix
         ./hosts/rana
 
         sops-nix.nixosModules.sops
