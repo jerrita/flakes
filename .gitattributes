@@ -1,1 +1,2 @@
 secrets/common/*.yaml diff=sopsdiffer
+secrets/*.yaml diff=sopsdiffer

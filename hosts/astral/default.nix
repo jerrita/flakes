@@ -6,6 +6,7 @@
   imports = [
     ./hardware.nix
 
+    ./nebula.nix
     ../../services/xray.nix
 
     ../../modules/nix-core.nix
@@ -19,7 +20,9 @@
     enable = true;
     device = "/dev/vda";
   };
+
   services.openssh.enable = true;
+  services.openssh.ports = [2222];
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 

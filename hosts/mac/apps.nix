@@ -39,6 +39,7 @@
       "obsidian"
       "mark-text"
       "iterm2"
+      "lens"
 
       # Research
       "zotero"

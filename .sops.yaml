@@ -9,3 +9,8 @@ creation_rules:
       - *jerrita
       - *astral
       - *rana
+  - path_regex: secrets/astral.yaml
+    key_groups:
+    - age:
+      - *jerrita
+      - *astral
