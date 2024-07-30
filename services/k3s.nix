@@ -6,7 +6,6 @@
   ...
 }: let
   name = config.networking.hostName;
-  intern = config.k3sInternIP;
 in {
   sops.secrets = {
     "k3s-token" = {};
@@ -61,12 +60,11 @@ in {
         then ''
           --cluster-cidr="10.42.0.0/16,2001:cafe:42:0::/56" \
           --service-cidr="10.43.0.0/16,2001:cafe:42:1::/112" \
-          --tls-san=${intern},${name},${name}.jerrita.cn \
-          --vpn-auth-file=${config.sops.secrets."tailscale-k3s".path}
+          --tls-san=${name},${name}.jerrita.cn
         ''
         else ""
       } \
-      --node-ip=${intern}
+      --vpn-auth-file=${config.sops.secrets."tailscale-k3s".path}
     '';
   };
 }

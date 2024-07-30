@@ -69,7 +69,6 @@
         ./config.nix
         {
           isagent = true;
-          k3sInternIP = "100.99.2.1,fd7a:115c:a1e0::7f01:1172";
         }
         ./hosts/astral
 
@@ -102,7 +101,6 @@
         {
           iscn = true;
           islxc = true;
-          k3sInternIP = "100.99.1.1,fd7a:115c:a1e0::5f01:8c4f";
         }
         ./hosts/hanabi
 

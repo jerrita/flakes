@@ -19,9 +19,5 @@
       default = false;
       type = lib.types.bool;
     };
-    k3sInternIP = lib.mkOption {
-      default = "100.99.0.1";
-      type = lib.types.str;
-    };
   };
 }
