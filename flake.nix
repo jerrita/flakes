@@ -42,7 +42,7 @@
       };
 
       modules = [
-        ./modules/config.nix
+        ./config.nix
         {
           ismac = true;
           iscn = true;
@@ -65,7 +65,7 @@
         inherit inputs username;
       };
       modules = [
-        ./modules/config.nix
+        ./config.nix
         ./hosts/astral
 
         sops-nix.nixosModules.sops
@@ -78,8 +78,25 @@
         inherit inputs username;
       };
       modules = [
-        ./modules/config.nix
+        ./config.nix
         ./hosts/rana
+
+        sops-nix.nixosModules.sops
+      ];
+    };
+
+    nixosConfigurations.hanabi = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {
+        inherit inputs username;
+      };
+      modules = [
+        ./config.nix
+        {
+          iscn = true;
+          islxc = true;
+        }
+        ./hosts/hanabi
 
         sops-nix.nixosModules.sops
       ];
@@ -87,10 +104,6 @@
 
     nixosConfigurations.bootstrap = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {
-        ismac = false;
-        iscn = false;
-      };
       modules = [
         ./hosts/bootstrap
 

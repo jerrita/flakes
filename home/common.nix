@@ -4,6 +4,9 @@
     neofetch
     cachix
 
+    # sre
+    kubectl
+
     # fonts
     jetbrains-mono
 

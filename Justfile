@@ -26,6 +26,7 @@ age target:
 
 sops:
     sops updatekeys secrets/common/*.yaml
+    sops updatekeys secrets/*.yaml
 
 bootstrap:
     nix build .#image -L
@@ -41,3 +42,4 @@ deploy target: fmt cache
 
 astral target='astral': (deploy target)
 rana target='rana': (deploy target)
+hanabi target='hanabi': (deploy target)

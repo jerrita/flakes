@@ -5,8 +5,8 @@
 }: {
   imports = [
     ./hardware.nix
+    ./disk.nix
 
-    ../../modules/disk-config.nix
     ../../modules/nix-core.nix
     ../../modules/zram.nix
   ];

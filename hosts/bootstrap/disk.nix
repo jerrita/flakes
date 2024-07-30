@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   disko = {
     enableConfig = false;
     devices = {

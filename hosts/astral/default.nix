@@ -27,7 +27,6 @@
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   time.timeZone = "Asia/Shanghai";
-
   networking.hostName = "astral";
   services.resolved.enable = false;
   networking.resolvconf.enable = false;

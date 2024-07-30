@@ -5,7 +5,6 @@
     else "$XDG_RUNTIME_DIR";
 in {
   home.shellAliases = {
-    k = "kubectl";
     rg = "joshuto";
     lg = "lazygit";
     cd = "z";
@@ -30,7 +29,7 @@ in {
       oh-my-zsh = {
         enable = true;
         theme = "dstufft";
-        plugins = ["git"];
+        plugins = ["git" "kubectl"];
       };
     };
     zoxide = {
