@@ -46,7 +46,6 @@ in {
     cert = config.sops.secrets."${name}.crt".path;
     ca = config.sops.secrets."ca.crt".path;
     tun.device = "lycoreco";
-    isRelay = true;
     staticHostMap = {
       "10.99.2.1" = [
         "astral.jerrita.cn:4242"

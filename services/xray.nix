@@ -75,5 +75,9 @@ in {
     enable = true;
     settingsFile = config.sops.templates."xray.json".path;
   };
-  systemd.services.xray.serviceConfig.User = "${user}";
+  systemd.services.xray = {
+    wants = ["sops-nix.service"];
+    after = ["sops-nix.service"];
+    serviceConfig.User = "${user}";
+  };
 }

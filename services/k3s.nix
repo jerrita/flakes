@@ -1,3 +1,4 @@
+# https://docs.rancher.cn/docs/k3s/installation/install-options/server-config/_index/
 {
   config,
   pkgs,
@@ -5,7 +6,13 @@
   ...
 }: let
   name = config.networking.hostName;
+  intern = config.k3sInternIP;
 in {
+  sops.secrets = {
+    "k3s-token" = {};
+    "tailscale-k3s" = {};
+  };
+
   systemd.services."conf-kmsg" = lib.mkIf config.islxc {
     wantedBy = ["default.target"];
     description = "LXC link kmsg";
@@ -28,22 +35,38 @@ in {
   systemd.tmpfiles.rules = [
     "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
   ];
-  systemd.services.k3s.after = ["nebula@lycoreco.service"];
+
+  services.tailscale.enable = true;
+  systemd.services.k3s = {
+    path = [pkgs.tailscale];
+    after = ["sops-nix.service"];
+  };
+
+  networking.firewall.extraCommands = ''
+    iptables -t nat -A POSTROUTING -s 192.168.0.0/16 -d 100.99.0.0/16 -j MASQUERADE
+  '';
+
   services.k3s = {
     enable = true;
-    package = pkgs.k3s_1_29;
+    package = pkgs.k3s_1_30;
     role =
       if config.isagent
       then "agent"
       else "server";
-    serverAddr = lib.mkIf config.isagent "10.99.1.1";
+    serverAddr = lib.mkIf config.isagent "https://100.99.1.1:6443";
+    tokenFile = lib.mkIf config.isagent config.sops.secrets."k3s-token".path;
     extraFlags = ''
-      --data-dir=/data/rancher \
-      --advertise-address=10.99.1.1 \
-      --cluster-cidr="10.42.0.0/16,2001:cafe:42::/56" \
-      --service-cidr="10.43.0.0/16,2001:cafe:42::/112" \
-      --tls-san=${name},${name}.jerrita.cn --resolv-conf=/etc/resolv.conf \
-      --flannel-backend=host-gw
+      --resolv-conf=/etc/resolv.conf ${
+        if (!config.isagent)
+        then ''
+          --cluster-cidr="10.42.0.0/16,2001:cafe:42:0::/56" \
+          --service-cidr="10.43.0.0/16,2001:cafe:42:1::/112" \
+          --tls-san=${intern},${name},${name}.jerrita.cn \
+          --vpn-auth-file=${config.sops.secrets."tailscale-k3s".path}
+        ''
+        else ""
+      } \
+      --node-ip=${intern}
     '';
   };
 }

@@ -6,6 +6,7 @@
 
     # sre
     kubectl
+    kubernetes-helm
     watch
 
     # fonts

@@ -42,7 +42,8 @@ in {
   };
   systemd.services.hysteria = {
     wantedBy = ["multi-user.target"];
-    wants = ["network-online.target"];
+    wants = ["network-online.target" "sops-nix.service"];
+    after = ["sops-nix.service"];
     description = "Hysteria Service";
     serviceConfig = {
       User = "${user}";

@@ -1,13 +1,15 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: {
   imports = [
     ./hardware.nix
 
-    ./nebula.nix
+    # ./nebula.nix
     ../../services/xray.nix
+    ../../services/k3s.nix
 
     ../../modules/nix-core.nix
     ../../modules/zram.nix

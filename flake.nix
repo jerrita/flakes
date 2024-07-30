@@ -59,6 +59,7 @@
       ];
     };
 
+    # Aliyun, HK
     nixosConfigurations.astral = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
@@ -66,12 +67,17 @@
       };
       modules = [
         ./config.nix
+        {
+          isagent = true;
+          k3sInternIP = "100.99.2.1,fd7a:115c:a1e0::7f01:1172";
+        }
         ./hosts/astral
 
         sops-nix.nixosModules.sops
       ];
     };
 
+    # US, Rack Nerd, San Jose
     nixosConfigurations.rana = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
@@ -85,6 +91,7 @@
       ];
     };
 
+    # Home, n5095
     nixosConfigurations.hanabi = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
@@ -95,6 +102,7 @@
         {
           iscn = true;
           islxc = true;
+          k3sInternIP = "100.99.1.1,fd7a:115c:a1e0::5f01:8c4f";
         }
         ./hosts/hanabi
 
