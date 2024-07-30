@@ -105,8 +105,8 @@
     nixosConfigurations.bootstrap = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        ./config.nix
         ./hosts/bootstrap
-
         disko.nixosModules.disko
       ];
     };

@@ -6,6 +6,7 @@
 
     # sre
     kubectl
+    watch
 
     # fonts
     jetbrains-mono

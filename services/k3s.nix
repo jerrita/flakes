@@ -28,6 +28,7 @@ in {
   systemd.tmpfiles.rules = [
     "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
   ];
+  systemd.services.k3s.after = ["nebula@lycoreco.service"];
   services.k3s = {
     enable = true;
     package = pkgs.k3s_1_29;
@@ -38,13 +39,11 @@ in {
     serverAddr = lib.mkIf config.isagent "10.99.1.1";
     extraFlags = ''
       --data-dir=/data/rancher \
+      --advertise-address=10.99.1.1 \
       --cluster-cidr="10.42.0.0/16,2001:cafe:42::/56" \
-      --service-cidr="10.43.0.0/16,2001:cafe:43::/112" \
-      --kubelet-arg="node-ip=::" \
-      --tls-san=${name}.lan,${name}.jerrita.cn --resolv-conf=/etc/resolv.conf \
-      --service-node-port-range="32000-32767"
+      --service-cidr="10.43.0.0/16,2001:cafe:42::/112" \
+      --tls-san=${name},${name}.jerrita.cn --resolv-conf=/etc/resolv.conf \
+      --flannel-backend=host-gw
     '';
-    # --flannel-backend="wireguard-native" \
-    # --vpn-auth="name=tailscale,joinKey=tskey-auth-kySMtr5CNTRL-GPpqs32eTH784vmKnHWpG7LBPzTww9y69"
   };
 }
