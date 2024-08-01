@@ -25,7 +25,6 @@ age target:
     nix-shell -p ssh-to-age --run 'ssh-keyscan {{ target }} | ssh-to-age'
 
 sops:
-    sops updatekeys secrets/common/*.yaml
     sops updatekeys secrets/*.yaml
 
 bootstrap:

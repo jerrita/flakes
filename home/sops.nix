@@ -14,7 +14,7 @@ in {
     # age.keyFile = "${homedir}/.age-key.txt"; # must have no password!
     # It's also possible to use a ssh key, but only when it has no password:
     age.sshKeyPaths = ["${homedir}/.ssh/id_ed25519"];
-    defaultSopsFile = ../secrets/common/default.yaml;
+    defaultSopsFile = ../secrets/common.yaml;
     secrets.env = {
       # sopsFile = ./secrets.yml.enc; # optionally define per-secret files
 

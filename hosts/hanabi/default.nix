@@ -9,12 +9,17 @@
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
 
     ./nebula.nix
+    ../../services/nebula.nix
     ../../services/k3s.nix
 
     ../../modules/nix-core.nix
     ../../modules/sops.nix
     ../../modules/sys.nix
   ];
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+  };
 
   proxmoxLXC.privileged = true;
   proxmoxLXC.manageNetwork = true;

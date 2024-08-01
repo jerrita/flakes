@@ -8,6 +8,7 @@
     kubectl
     kubernetes-helm
     watch
+    postgresql_15 # for cli
 
     # fonts
     jetbrains-mono

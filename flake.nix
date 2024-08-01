@@ -67,9 +67,6 @@
       };
       modules = [
         ./config.nix
-        {
-          isagent = true;
-        }
         ./hosts/astral
 
         sops-nix.nixosModules.sops

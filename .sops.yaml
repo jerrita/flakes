@@ -4,7 +4,8 @@ keys:
   - &rana age1xwltygtx2gl6kl3j3z9vqzj8d5t0wexcr8qehg8pwazfw7rfqfps687tk5
   - &hanabi age133px4gm8wre967qm3rek0wlg7x6ac3x3uzf73wn07hun6537t9mse0h3sr
 creation_rules:
-  - path_regex: secrets/common/[^/]+\.(yaml|json|env|ini)$
+  # - path_regex: secrets/common/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/common.yaml
     key_groups:
     - age:
       - *jerrita

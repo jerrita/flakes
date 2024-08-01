@@ -7,9 +7,13 @@
   imports = [
     ./hardware.nix
 
-    # ./nebula.nix
+    # ./pgsql.nix
+    ./etcd.nix
     ../../services/xray.nix
     ../../services/k3s.nix
+
+    ./nebula.nix
+    ../../services/nebula.nix
 
     ../../modules/nix-core.nix
     ../../modules/zram.nix

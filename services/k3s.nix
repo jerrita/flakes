@@ -8,8 +8,8 @@
   name = config.networking.hostName;
 in {
   sops.secrets = {
-    "k3s-token" = {};
-    "tailscale-k3s" = {};
+    "k3s/tailscale" = {};
+    "k3s/env" = {};
   };
 
   systemd.services."conf-kmsg" = lib.mkIf config.islxc {
@@ -38,7 +38,7 @@ in {
   services.tailscale.enable = true;
   systemd.services.k3s = {
     path = [pkgs.tailscale];
-    after = ["sops-nix.service"];
+    after = ["sops-nix.service" "nebula@lycoreco.service"];
   };
 
   networking.firewall.extraCommands = ''
@@ -52,9 +52,9 @@ in {
       if config.isagent
       then "agent"
       else "server";
-    serverAddr = lib.mkIf config.isagent "https://100.99.1.1:6443";
-    tokenFile = lib.mkIf config.isagent config.sops.secrets."k3s-token".path;
+    environmentFile = config.sops.secrets."k3s/env".path;
     extraFlags = ''
+      --vpn-auth-file=${config.sops.secrets."k3s/tailscale".path} \
       --resolv-conf=/etc/resolv.conf ${
         if (!config.isagent)
         then ''
@@ -63,8 +63,7 @@ in {
           --tls-san=${name},${name}.jerrita.cn
         ''
         else ""
-      } \
-      --vpn-auth-file=${config.sops.secrets."tailscale-k3s".path}
+      }
     '';
   };
 }
