@@ -62,6 +62,7 @@
       "clash-verge-rev"
       "whisky"
       "playcover-community@beta"
+      "steam"
     ];
   };
 }

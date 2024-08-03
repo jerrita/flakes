@@ -6,10 +6,15 @@
   ...
 }: let
   name = config.networking.hostName;
+  cfg = config.services.k3s;
 in {
   sops.secrets = {
-    "k3s/tailscale" = {};
-    "k3s/env" = {};
+    # "k3s/tailscale" = {};
+    "k3s/env".sopsFile = ../secrets/${name}.yaml;
+    "k3s/extras".sopsFile = ../secrets/${name}.yaml;
+    "etcd/cert.pem" = {};
+    "etcd/key.pem" = {};
+    "etcd/ca.crt" = {};
   };
 
   systemd.services."conf-kmsg" = lib.mkIf config.islxc {
@@ -35,15 +40,31 @@ in {
     "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
   ];
 
-  services.tailscale.enable = true;
-  systemd.services.k3s = {
-    path = [pkgs.tailscale];
-    after = ["sops-nix.service" "nebula@lycoreco.service"];
-  };
+  # networking.firewall.extraCommands = ''
+  #   iptables -t nat -A POSTROUTING -s 192.168.0.0/16 -d 100.99.0.0/16 -j MASQUERADE
+  # '';
 
-  networking.firewall.extraCommands = ''
-    iptables -t nat -A POSTROUTING -s 192.168.0.0/16 -d 100.99.0.0/16 -j MASQUERADE
-  '';
+  systemd.services.k3s = {
+    path = [pkgs.coreutils pkgs.curl];
+    after = ["sops-nix.service"];
+    serviceConfig.ExecStart = lib.mkForce (pkgs.writeScript "k3s-wrap" ''
+      #!/bin/sh
+      extraFlags=$(cat ${config.sops.secrets."k3s/extras".path})
+      hostIP=$(curl -4 ip.sb)
+      echo --node-external-ip=$hostIP $extraFlags | xargs \
+        ${cfg.package}/bin/k3s ${cfg.role} \
+        --resolv-conf=/etc/resolv.conf ${
+        if (!config.isagent)
+        then ''
+          --disable metrics-server \
+          --tls-san=${name},${name}.jerrita.cn,apiserver \
+          --flannel-backend=wireguard-native \
+          --flannel-external-ip
+        ''
+        else ""
+      }
+    '');
+  };
 
   services.k3s = {
     enable = true;
@@ -53,17 +74,5 @@ in {
       then "agent"
       else "server";
     environmentFile = config.sops.secrets."k3s/env".path;
-    extraFlags = ''
-      --vpn-auth-file=${config.sops.secrets."k3s/tailscale".path} \
-      --resolv-conf=/etc/resolv.conf ${
-        if (!config.isagent)
-        then ''
-          --cluster-cidr="10.42.0.0/16,2001:cafe:42:0::/56" \
-          --service-cidr="10.43.0.0/16,2001:cafe:42:1::/112" \
-          --tls-san=${name},${name}.jerrita.cn
-        ''
-        else ""
-      }
-    '';
   };
 }

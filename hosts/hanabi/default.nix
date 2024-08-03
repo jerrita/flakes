@@ -8,8 +8,6 @@
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
 
-    ./nebula.nix
-    ../../services/nebula.nix
     ../../services/k3s.nix
 
     ../../modules/nix-core.nix

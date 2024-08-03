@@ -11,6 +11,7 @@
       git
       alejandra
       neofetch
+      wireguard-tools
 
       tldr
     ]
