@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./host.nix
     ./apps.nix
 
-    ./sketchybar
-    ./yabai.nix
+    # ./sketchybar
+    # ./yabai.nix
     ./skhd.nix
 
     ../../modules/nix-core.nix
@@ -31,7 +35,7 @@
         FXPreferredViewStyle = "clmv";
         ShowStatusBar = true;
       };
-      NSGlobalDomain._HIHideMenuBar = true;
+      NSGlobalDomain._HIHideMenuBar = lib.mkDefault false;
       screencapture.location = "~/Screenshots";
       trackpad.Clicking = true;
     };

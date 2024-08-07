@@ -6,6 +6,7 @@
     skhd
     darwin.iproute2mac
     nixos-rebuild
+    wireguard-tools
     cargo
   ];
 

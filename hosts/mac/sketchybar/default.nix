@@ -2,6 +2,8 @@
   homebrew.casks = ["sf-symbols"];
   homebrew.brews = ["switchaudio-osx"];
 
+  system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+
   services.sketchybar = {
     enable = true;
     extraPackages = with pkgs; [jq ifstat-legacy jetbrains-mono skhd];

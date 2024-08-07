@@ -19,5 +19,9 @@
       default = false;
       type = lib.types.bool;
     };
+    useWg = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+    };
   };
 }

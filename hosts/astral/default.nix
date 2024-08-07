@@ -8,10 +8,14 @@
     ./hardware.nix
 
     # ./pgsql.nix
-    ./etcd.nix
+    # ./etcd.nix
+    # ./edge.nix
+    ./wstunnel.nix
     ../../services/xray.nix
-    ../../services/k3s.nix
+    ../../services/wireguard.nix
+    # ../../services/k3s.nix
 
+    # ../../modules/fhs.nix
     ../../modules/nix-core.nix
     ../../modules/zram.nix
     ../../modules/vps.nix

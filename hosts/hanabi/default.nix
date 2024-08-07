@@ -8,16 +8,14 @@
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
 
-    ../../services/k3s.nix
+    # ../../services/k3s.nix
+    # ../../services/kubernetes.nix
+    ./wstunnel.nix
 
     ../../modules/nix-core.nix
     ../../modules/sops.nix
     ../../modules/sys.nix
   ];
-
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_forward" = 1;
-  };
 
   proxmoxLXC.privileged = true;
   proxmoxLXC.manageNetwork = true;
@@ -28,6 +26,7 @@
   services.resolved.enable = false;
   networking.resolvconf.enable = false;
   environment.etc."resolv.conf".text = "nameserver 192.168.5.1\n";
+  networking.firewall.trustedInterfaces = ["eth0"];
 
   # auto clean
   boot.loader.systemd-boot.configurationLimit = 10;

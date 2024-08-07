@@ -9,16 +9,15 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     darwin = {
       url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+    home-manager.url = "github:nix-community/home-manager";
+    nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
     disko.url = "github:nix-community/disko";
   };
@@ -26,9 +25,11 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    nixpkgs-darwin,
     disko,
     darwin,
     sops-nix,
+    nur,
     home-manager,
     ...
   }: let
@@ -66,7 +67,9 @@
         inherit inputs username;
       };
       modules = [
+        nur.nixosModules.nur
         ./config.nix
+        {useWg = true;}
         ./hosts/astral
 
         sops-nix.nixosModules.sops
@@ -94,6 +97,7 @@
         inherit inputs username;
       };
       modules = [
+        nur.nixosModules.nur
         ./config.nix
         {
           iscn = true;

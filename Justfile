@@ -37,7 +37,7 @@ cache:
     ssh-add ~/.ssh/id_ed25519
 
 deploy target: fmt cache
-    nixos-rebuild switch --flake .#{{ target }} --target-host {{ target }} --build-host {{ target }} --fast --use-remote-sudo
+    nixos-rebuild switch --flake .#{{ target }} --build-host {{ target }} --target-host {{ target }} --fast --use-remote-sudo
 
 astral target='astral': (deploy target)
 rana target='rana': (deploy target)
