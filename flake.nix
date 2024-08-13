@@ -16,7 +16,15 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager-darwin = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+
     nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
     disko.url = "github:nix-community/disko";
@@ -31,6 +39,7 @@
     sops-nix,
     nur,
     home-manager,
+    home-manager-darwin,
     ...
   }: let
     username = "jerrita";
@@ -50,7 +59,7 @@
         }
         ./hosts/mac
 
-        home-manager.darwinModules.home-manager
+        home-manager-darwin.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

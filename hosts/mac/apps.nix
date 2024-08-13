@@ -41,6 +41,7 @@
       "mark-text"
       "iterm2"
       "lens"
+      "zed"
 
       # Research
       "zotero"
