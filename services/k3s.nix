@@ -9,12 +9,12 @@
   cfg = config.services.k3s;
 in {
   sops.secrets = {
-    # "k3s/tailscale" = {};
     "k3s/env".sopsFile = ../secrets/${name}.yaml;
-    "k3s/extras".sopsFile = ../secrets/${name}.yaml;
-    "etcd/cert.pem" = {};
-    "etcd/key.pem" = {};
-    "etcd/ca.crt" = {};
+    # "k3s/extras".sopsFile = ../secrets/${name}.yaml;
+    "k3s/token" = {};
+    # "etcd/cert.pem" = {};
+    # "etcd/key.pem" = {};
+    # "etcd/ca.crt" = {};
   };
 
   systemd.services."conf-kmsg" = lib.mkIf config.islxc {
@@ -36,6 +36,7 @@ in {
   };
 
   networking.firewall.allowedTCPPorts = [6443];
+  networking.firewall.trustedInterfaces = ["flannel*"];
   systemd.tmpfiles.rules = [
     "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
   ];
@@ -45,27 +46,10 @@ in {
   # '';
 
   # disable: servicelb traefik
+  environment.systemPackages = [pkgs.nfs-utils];
   systemd.services.k3s = {
-    path = [pkgs.coreutils pkgs.curl];
+    path = with pkgs; [coreutils curl nfs-utils];
     after = ["sops-nix.service" "wireguard.service"];
-    # serviceConfig.ExecStart = lib.mkForce (pkgs.writeScript "k3s-wrap" ''
-    #   #!/bin/sh
-    #   extraFlags=$(cat ${config.sops.secrets."k3s/extras".path})
-    #   # hostIP=$(curl -4 ip.sb)
-    #   # echo --node-external-ip=$hostIP $extraFlags | xargs \
-    #   echo $extraFlags | xargs \
-    #     ${cfg.package}/bin/k3s ${cfg.role} \
-    #     --resolv-conf=/etc/resolv.conf ${
-    #     if (!config.isagent)
-    #     then ''
-    #       --disable metrics-server \
-    #       --cluster-cidr=10.42.0.0/16,2001:cafe:42:0::/56 \
-    #       --service-cidr=10.43.0.0/16,2001:cafe:42:1::/112 \
-    #       --tls-san=${name},${name}.jerrita.cn,apiserver
-    #     ''
-    #     else ""
-    #   }
-    # '');
   };
 
   services.k3s = {
@@ -76,6 +60,8 @@ in {
       then "agent"
       else "server";
     environmentFile = config.sops.secrets."k3s/env".path;
+    serverAddr = lib.mkIf config.isagent "https://192.168.5.80:6443";
+    tokenFile = lib.mkIf config.isagent config.sops.secrets."k3s/token".path;
     extraFlags = ''
       --resolv-conf=/etc/resolv.conf ${
         if (config.useWg)
@@ -84,7 +70,6 @@ in {
       } ${
         if (!config.isagent)
         then ''
-          --disable metrics-server \
           --cluster-cidr=10.42.0.0/16,2001:cafe:42:0::/56 \
           --service-cidr=10.43.0.0/16,2001:cafe:42:1::/112 \
           --tls-san=${name},${name}.jerrita.cn,apiserver \

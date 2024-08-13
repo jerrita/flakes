@@ -13,7 +13,7 @@
     ./wstunnel.nix
     ../../services/xray.nix
     ../../services/wireguard.nix
-    # ../../services/k3s.nix
+    ../../services/k3s.nix
 
     # ../../modules/fhs.nix
     ../../modules/nix-core.nix
@@ -39,6 +39,11 @@
   networking.resolvconf.enable = false;
   environment.etc."resolv.conf".text = "nameserver 8.8.8.8\n";
 
+  networking.extraHosts = ''
+    192.168.5.68 cloud.lan
+    192.168.5.67 emby.lan
+  '';
+
   programs.zsh.enable = true;
 
   documentation = {
@@ -49,7 +54,7 @@
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIlhieGV556BnkvCUDWev/awcmdxgjAgLT2VOuFPaIqa jerrita@dev"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM6m8fiwUgm+iSczcsBm/mzH2yoyjiFvlUSs4N4U7urU jerrita@Jerrita-Air"
   ];
 
   system.stateVersion = "24.05";

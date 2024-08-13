@@ -39,6 +39,6 @@ cache:
 deploy target: fmt cache
     nixos-rebuild switch --flake .#{{ target }} --build-host {{ target }} --target-host {{ target }} --fast --use-remote-sudo
 
+aris target='aris': (deploy target)
 astral target='astral': (deploy target)
 rana target='rana': (deploy target)
-hanabi target='hanabi': (deploy target)

@@ -19,6 +19,7 @@
       then []
       else [
         psmisc
+        tcpdump
         lsof
         sysstat
         inetutils

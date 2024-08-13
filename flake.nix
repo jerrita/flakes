@@ -69,7 +69,10 @@
       modules = [
         nur.nixosModules.nur
         ./config.nix
-        {useWg = true;}
+        {
+          useWg = true;
+          isagent = true;
+        }
         ./hosts/astral
 
         sops-nix.nixosModules.sops
@@ -91,7 +94,7 @@
     };
 
     # Home, n5095
-    nixosConfigurations.hanabi = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.aris = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs username;
@@ -103,7 +106,7 @@
           iscn = true;
           islxc = true;
         }
-        ./hosts/hanabi
+        ./hosts/aris
 
         sops-nix.nixosModules.sops
       ];

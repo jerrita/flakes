@@ -50,6 +50,7 @@
     gh
     just
     tldr
+    pdm
   ];
 
   programs = {
