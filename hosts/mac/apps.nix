@@ -23,6 +23,7 @@
 
     brews = [
       "terraform"
+      "pdm"
     ];
 
     masApps = {
@@ -53,6 +54,7 @@
       "telegram"
 
       # Utils
+      "maczip"
       "appcleaner"
       "iina"
       "stats"

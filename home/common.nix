@@ -30,7 +30,6 @@
     # utils
     sops
     ripgrep
-    joshuto
     lazygit
     jq
     yq-go
@@ -50,7 +49,6 @@
     gh
     just
     tldr
-    pdm
   ];
 
   programs = {

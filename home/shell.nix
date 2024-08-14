@@ -1,13 +1,20 @@
-{osConfig, ...}: let
+{
+  osConfig,
+  unstable,
+  ...
+}: let
   sops-prefix =
     if osConfig.ismac
     then "$(getconf DARWIN_USER_TEMP_DIR)"
     else "$XDG_RUNTIME_DIR";
 in {
   home.shellAliases = {
-    rg = "joshuto";
     lg = "lazygit";
     cd = "z";
+    ls = "ls -G";
+    ll = "ls -lGh";
+    l = "ls -G";
+    k = "kubectl";
     wgen = "wg genkey | tee privatekey | wg pubkey > publickey";
 
     update = "cd ~/flakes && just";
@@ -28,13 +35,22 @@ in {
         fi
       '';
       oh-my-zsh = {
-        enable = true;
+        enable = false;
         theme = "dstufft";
         plugins = ["git" "kubectl"];
       };
     };
     zoxide = {
       enable = true;
+      enableZshIntegration = true;
+    };
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    yazi = {
+      enable = true;
+      package = unstable.yazi;
       enableZshIntegration = true;
     };
   };
