@@ -9,7 +9,7 @@
 
     # ./sketchybar
     # ./yabai.nix
-    ./skhd.nix
+    # ./skhd.nix
 
     ../../modules/nix-core.nix
     ../../modules/homebrew-mirror.nix

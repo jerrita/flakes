@@ -42,6 +42,7 @@
       "mark-text"
       "iterm2"
       "lens"
+      "pycharm"
       "zed"
 
       # Research
@@ -61,12 +62,16 @@
       "raycast"
       "scroll-reverser"
       "microsoft-remote-desktop"
+      "asitop"
 
-      # Misc
+      # Misc & Game
       "clash-verge-rev"
       "whisky"
       "playcover-community@beta"
       "steam"
+      "prismlauncher"
+      "openjdk@21"
+      "openjdk@17"
     ];
   };
 }
