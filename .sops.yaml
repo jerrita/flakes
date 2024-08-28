@@ -1,24 +1,24 @@
 keys:
   - &jerrita age1feqjynjlfu3tx7xukcrqjxfg7gyke0sy9c9gskrhp5laxy9md3ss56s482
   - &astral age1862lkkgtfnm24l0q3umxllrtdfvlgj59cwp5xnjjehw6wjan0cnsrermu8
-  - &rana age1xwltygtx2gl6kl3j3z9vqzj8d5t0wexcr8qehg8pwazfw7rfqfps687tk5
+  - &rana age1fmgj0ddqfvkxf42kkrrjzhagldmrqlpefw2h0cjgmd0h5shaw53syxp2ug
   - &aris age1axas68jfaycgenf4memf2a9sk9kvgzdpxvlphypzxqxr00gatgvq6lhs3d
 creation_rules:
   # - path_regex: secrets/common/[^/]+\.(yaml|json|env|ini)$
   - path_regex: secrets/common.yaml
     key_groups:
-    - age:
-      - *jerrita
-      - *astral
-      - *rana
-      - *aris
+      - age:
+          - *jerrita
+          - *astral
+          - *rana
+          - *aris
   - path_regex: secrets/astral.yaml
     key_groups:
-    - age:
-      - *jerrita
-      - *astral
+      - age:
+          - *jerrita
+          - *astral
   - path_regex: secrets/aris.yaml
     key_groups:
-    - age:
-      - *jerrita
-      - *aris
+      - age:
+          - *jerrita
+          - *aris
