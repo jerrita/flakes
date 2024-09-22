@@ -40,6 +40,7 @@
     hashedPassword = "$y$j9T$YmBq2sedi2MiiYavxL/2s/$mZRegovXZ2moAsg91gKzSoDs//DtOk41roROqJkf4JA";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM6m8fiwUgm+iSczcsBm/mzH2yoyjiFvlUSs4N4U7urU jerrita@Jerrita-Air"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsLDKu3yjeLyqhEE45FiUvo1EdyfN+pRSACEY/N4j5B dev@misakinet"
     ];
   };
 
