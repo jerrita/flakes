@@ -3,7 +3,7 @@
     enableConfig = false;
     devices = {
       disk.main = {
-        imageSize = "3G";
+        imageSize = "5G";
         device = "/dev/vda";
         type = "disk";
         content = {

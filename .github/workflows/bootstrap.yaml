@@ -11,6 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        disk: [sda, vda]
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -22,17 +26,14 @@ jobs:
 
     - name: Build nixos-bootstrap
       run: |
-        nix build .#image.vda -L
-        cp result/main.raw nixos-bootstrap-vda
-        xz nixos-bootstrap-vda
-        nix build .#image.sda -L
-        cp result/main.raw nixos-bootstrap-sda
-        xz nixos-bootstrap-sda
+        nix build .#image.${{ matrix.disk }} -L
+        cp result/main.raw nixos-bootstrap-${{ matrix.disk }}
+        xz nixos-bootstrap-${{ matrix.disk }}
 
     - name: Release
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: "bootstrap"
-          file: ./nixos-bootstrap-*.xz
+          file: ./nixos-bootstrap-${{ matrix.disk }}.xz
           overwrite: true
