@@ -126,17 +126,29 @@
       ];
     };
 
-    nixosConfigurations.bootstrap = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.bootstrap-vda = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./config.nix
         ./hosts/bootstrap
+        ./hosts/bootstrap/disk-vda.nix
+        disko.nixosModules.disko
+      ];
+    };
+
+    nixosConfigurations.bootstrap-sda = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./config.nix
+        ./hosts/bootstrap
+        ./hosts/bootstrap/disk-sda.nix
         disko.nixosModules.disko
       ];
     };
 
     packages.x86_64-linux = {
-      image = self.nixosConfigurations.bootstrap.config.system.build.diskoImages;
+      image.vda = self.nixosConfigurations.bootstrap-vda.config.system.build.diskoImages;
+      image.sda = self.nixosConfigurations.bootstrap-sda.config.system.build.diskoImages;
     };
 
     formatter."aarch64-darwin" = nixpkgs.legacyPackages."aarch64-darwin".alejandra;

@@ -22,15 +22,17 @@ jobs:
 
     - name: Build nixos-bootstrap
       run: |
-        nix build .#image -L
-        cp result/main.raw nixos-bootstrap
-        xz nixos-bootstrap
+        nix build .#image.vda -L
+        cp result/main.raw nixos-bootstrap-vda
+        xz nixos-bootstrap-vda
+        nix build .#image.sda -L
+        cp result/main.raw nixos-bootstrap-sda
+        xz nixos-bootstrap-sda
 
     - name: Release
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: "bootstrap"
-          file: ./nixos-bootstrap.xz
+          file: ./nixos-bootstrap-*.xz
           overwrite: true
-
