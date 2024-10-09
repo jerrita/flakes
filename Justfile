@@ -5,7 +5,7 @@ all: build
 fmt:
 	nix fmt
 
-build: fmt
+build:
     #!/usr/bin/env sh
     if [[ "{{OS}}" = "Darwin" ]]; then
         if [ ! -f ./result/sw/bin/darwin-rebuild ]; then

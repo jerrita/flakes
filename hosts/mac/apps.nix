@@ -24,6 +24,11 @@
     brews = [
       "terraform"
       "pdm"
+      "rustup"
+
+      "asitop"
+      "openjdk@21"
+      "openjdk@17"
     ];
 
     masApps = {
@@ -39,20 +44,23 @@
       "microsoft-edge"
       "visual-studio-code"
       "obsidian"
-      "mark-text"
+      "typora"
       "iterm2"
       "lens"
       "pycharm"
+      "rustrover"
       "zed"
 
       # Research
       "zotero"
+      "notion"
 
       # Drive
       "synology-drive"
 
       # IM
       "telegram"
+      "zoom"
 
       # Utils
       "maczip"
@@ -62,16 +70,16 @@
       "raycast"
       "scroll-reverser"
       "microsoft-remote-desktop"
-      "asitop"
+      "balenaetcher"
 
       # Misc & Game
-      "clash-verge-rev"
+      "sf-symbols"
+      "parsec"
+      "background-music"
       "whisky"
       "playcover-community@beta"
       "steam"
       "prismlauncher"
-      "openjdk@21"
-      "openjdk@17"
     ];
   };
 }
